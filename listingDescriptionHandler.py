@@ -254,8 +254,13 @@ def resize_and_convert_image(input_image_path, size, original_s3_object_key):
 
 def watermark_ebit_images(input_image_path, output_image_path, bottom_offset, opacity=128, font_size=36):
     # Open the original image
-    original = Image.open(input_image_path)
-    original = original.convert("RGBA")  # Convert to RGBA to add transparency to the watermark
+    try:
+        logging.debug("input_image_path read as ", input_image_path)
+        original = Image.open(input_image_path)
+        original = original.convert("RGBA")
+    except IOError as e:
+        print(f"Error loading image {input_image_path}: {e}")
+        # Handle the error, e.g., skip processing this image or try to re-fetch the image
 
     # Make the image editable
     txt = Image.new('RGBA', original.size, (255, 255, 255, 0))
@@ -329,7 +334,7 @@ def generate_image_from_AI(business_description, article_id, businesses_title):
     if api_key is None:
         raise Exception("Missing Stability API key.")
     
-    s3_object_key = article_id+'_BFS.png'
+    s3_object_key = article_id+'_DealStream.png'
     print(f"s3_bucket_name {s3_bucket_name}, amd key {s3_object_key}.")
     print(f"api_key {api_key}.")
     print(f"prompt {prompt}.")
@@ -446,10 +451,8 @@ def generate_readable_description(business_description):
         ],
         max_tokens=200,
     )
-
-    print(f"Updated readable_description {chat_completion}.")
-
     readable_description = chat_completion.choices[0].message.content.strip()
+    print(f"Updated readable_description {readable_description}.")
 
     return readable_description
 
@@ -473,11 +476,10 @@ def generate_readable_title_withAI(business_description):
         max_tokens=200,
     )
 
-    print(f"Updated title {chat_completion}.")
-
     generated_title = chat_completion.choices[0].message.content.strip()
 
     # Remove quotation marks if present
     generated_title = generated_title.replace('"', "").replace("'", "")
+    print(f"Updated title {generated_title}.")
 
     return generated_title

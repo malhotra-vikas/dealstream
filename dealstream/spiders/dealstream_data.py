@@ -1,7 +1,13 @@
+import logging
 import scrapy
 import dotenv
 import os
 import boto3
+import json
+from datetime import datetime
+
+from scrapy import signals
+from scrapy.signalmanager import dispatcher
 
 from listingDescriptionHandler import (
     generate_readable_description,
@@ -15,11 +21,27 @@ dotenv.load_dotenv()
 
 class DealstreamDataSpider(scrapy.Spider):
     name = "dealstream_data"
+
+    # Get today's date in the format YYYYMMDD
+    today_date = datetime.now().strftime("%Y%m%d")
+    
     custom_settings = {
         "FEED_FORMAT": "json",
-        "FEED_URI": "output/dealstream.json",
+        "FEED_URI": f"output/dealstream_{today_date}.json",
         "FEED_EXPORT_ENCODING": "utf-8",
     }
+
+    def __init__(self, *args, **kwargs):
+        super(DealstreamDataSpider, self).__init__(*args, **kwargs)
+        dispatcher.connect(self.spider_closed, signals.spider_closed)
+
+    def spider_closed(self, spider):
+        """
+        Hook that gets called when the spider is closed. It uploads the generated JSON file to S3.
+        """
+        file_name = 'output/dealstream.json'
+        bucket = os.getenv('OUTPUT_S3_BUCKET_NAME')
+        self.upload_to_s3(file_name, bucket)
 
     # changes the headers and cookies before new run...
     cookies = {
@@ -120,16 +142,24 @@ class DealstreamDataSpider(scrapy.Spider):
     def parse_next(self, response):
         title = response.css('h1[data-translatable="headline"]::text').get()
         details = response.css(".mb-2 span").xpath("string()").extract()
-        listing_photo = response.css(".listing-photo::attr(src)").get()
-        price_str = response.css('div.card-body p:contains("Price")::text').re_first(
-            r"\$([\d,]+)"
-        )
-        sales_str = response.css('div.card-body p:contains("Sales")::text').re_first(
-            r"\$([\d,]+)"
-        )
-        cash_flow_str = response.css(
-            'div.card-body p:contains("Cash Flow")::text'
-        ).re_first(r"\$([\d,]+)")
+        article_id = response.meta.get('ad_id')
+        
+        # Extracting Price
+        price_str = response.css('p:contains("Price")::text').get()
+        logging.debug(f"price_str is: {price_str}")
+
+        price_str = price_str.split('$')[-1].replace(',', '').strip() if price_str else None
+        logging.debug(f"price_str is: {price_str}")
+
+        # Extracting Sales
+        sales_str = response.css('p:contains("Sales")::text').get()
+        sales_str = sales_str.split('$')[-1].replace(',', '').strip() if sales_str else None
+        logging.debug(f"sales_str is: {sales_str}")
+
+        # Extracting Cash Flow
+        cash_flow_str = response.css('p:contains("Cash Flow")::text').get()
+        cash_flow_str = cash_flow_str.split('$')[-1].replace(',', '').strip() if cash_flow_str else None
+        logging.debug(f"cash_flow_str is: {cash_flow_str}")
 
         # Convert the extracted strings to integers
         price = self.convert_to_int(price_str)
@@ -138,8 +168,8 @@ class DealstreamDataSpider(scrapy.Spider):
 
         ebita = cash_flow
 
-        category = response.css(".b span:nth-child(2)::text").get()
-        location = response.css(".b span:nth-child(3)::text").get()
+        category = response.css(".b span:nth-child(1)::text").get()
+        location = response.css(".b span:nth-child(2)::text").get()
 
         name = response.css("#main .mb-1 a::text").get()
         person_image = response.css(".borderless::attr(src)").get()
@@ -154,27 +184,63 @@ class DealstreamDataSpider(scrapy.Spider):
             scrapedBusinessDescription, details
         )
 
-        if (fullScrapedDescription and fullScrapedDescription != 'NA' and fullScrapedDescription != ""):
+        ai_images_dict = {}
+
+        if (
+            fullScrapedDescription
+            and fullScrapedDescription != "NA"
+            and fullScrapedDescription != ""
+        ):
             business_description = generate_readable_description(fullScrapedDescription)
 
-            #ai_images_dict = generate_image_from_AI(business_description, article_id, businesses_title)
+            ai_images_dict = generate_image_from_AI(business_description, article_id, title)
 
         else:
             business_description = fullScrapedDescription
 
-        if (business_description and business_description != 'NA' and business_description != ""):
+        if (
+            business_description
+            and business_description != "NA"
+            and business_description != ""
+        ):
             title = generate_readable_title_withAI(business_description)
         else:
-            title = 'NA'
+            title = "NA"
 
         listed_by = {
             "broker-name": name if name else "",
             "broker_image": person_image if name else "",
             "broker_other_info": person_other_info if person_other_info else "",
         }
+        dynamic_dict = []
+        dynamic_dict.append(ai_images_dict)
+        scrapped_image_url = response.css(".listing-photo::attr(src)").get()
+        '''
+        if scrapped_image_url:
+            scrapped_images_dict = {}
+            # Sizes you want to resize your image to
+            sizes = [(851, 420), (526, 240), (146, 202), (411, 243), (265, 146)]
+            s3_object_key = article_id+"_DealStream.png"
+
+            for size in sizes:
+                try:
+                    resized_s3_url = resize_and_convert_image(scrapped_image_url, size, s3_object_key)
+                    key = f"{size[0]}x{size[1]}"
+                    scrapped_images_dict[key] = resized_s3_url
+                except OSError as e:
+                    self.logger.error(f"Error processing image {scrapped_image_url}: {e}")
+                    continue
+        
+            dynamic_dict.append(scrapped_images_dict)
+        
+            print("dynamic_dict after Scrapped Image Dict", dynamic_dict)
+
+            print("dynamic_dict after Scrapped Image Dict", json.dumps(dynamic_dict))
+        '''
+
 
         yield {
-            "ad_id": f"{response.meta.get('ad_id')}_DealStream",
+            "ad_id": f"{article_id}_DealStream",
             "article_url": response.meta.get("article_url"),
             "title": title,
             "source": "dealstream",
@@ -184,7 +250,7 @@ class DealstreamDataSpider(scrapy.Spider):
             "gross_revenue": sales,
             "cash_flow": cash_flow,
             "EBITDA": ebita,
-            "listing_photo": listing_photo,
+            'listing-photos': json.dumps(dynamic_dict),
             "businessListedBy": listed_by,
             "scraped_business_description": fullScrapedDescription,
             "business_description": business_description,
@@ -195,11 +261,19 @@ class DealstreamDataSpider(scrapy.Spider):
 
     @staticmethod
     def convert_to_int(value_str):
-        if value_str is not None:
-            return int(value_str.replace(",", ""))
-        return ""
+        if value_str is None:
+            logging.debug("Received None input for conversion.")
+            return 0
+        # Stripping any leading/trailing whitespace and removing commas
+        try:
+            # Remove commas and extra spaces, then convert to int
+            return int(value_str.replace(",", "").strip())
+        except ValueError:
+            # Log the error and the problematic input for debugging
+            logging.error(f"Error converting '{value_str}' to int.")
+            return 0
 
-    @staticmethod
+
     def combine_description_with_details(self, scraped_description, details):
         parsed_details = self.parse_details(details)
         full_description = (
@@ -210,10 +284,45 @@ class DealstreamDataSpider(scrapy.Spider):
         return full_description
 
     def parse_details(self, details):
+        """
+        Parses business details from a scraped string into a dictionary.
+
+        Args:
+            details (list): A list where the first item is a string containing business details separated by line breaks.
+
+        Returns:
+            dict: A dictionary of parsed details.
+        """
         parsed_details = {}
-        lines = details[0].split("\r")
-        for line in lines:
-            if ":" in line:
-                key, value = line.split(":", 1)
-                parsed_details[key.strip()] = value.strip()
+        try:
+            lines = details[0].split("\r")
+            for line in lines:
+                if ":" in line:
+                    key, value = line.split(":", 1)
+                    parsed_details[key.strip()] = value.strip()
+        except IndexError:
+            logging.error("Error parsing details: Index out of range")
+        except Exception as e:
+            logging.error(f"Unexpected error occurred: {str(e)}")
         return parsed_details
+
+
+    def upload_to_s3(self, file_name, bucket, object_name=None):
+        """
+        Upload a file to an S3 bucket
+
+        :param file_name: File to upload
+        :param bucket: Bucket to upload to
+        :param object_name: S3 object name. If not specified, file_name is used
+        """
+        # If S3 object_name was not specified, use file_name
+        if object_name is None:
+            object_name = file_name
+
+        # Upload the file
+        s3_client = boto3.client("s3")
+        try:
+            response = s3_client.upload_file(file_name, bucket, object_name)
+        except Exception as e:
+            return False
+        return True
