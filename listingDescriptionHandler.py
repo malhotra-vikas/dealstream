@@ -255,7 +255,7 @@ def resize_and_convert_image(input_image_path, size, original_s3_object_key):
 def watermark_ebit_images(input_image_path, output_image_path, bottom_offset, opacity=128, font_size=36):
     # Open the original image
     try:
-        logging.debug("input_image_path read as ", input_image_path)
+        print(f"input_image_path read as {input_image_path}") 
         original = Image.open(input_image_path)
         original = original.convert("RGBA")
     except IOError as e:
