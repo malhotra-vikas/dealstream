@@ -1,4 +1,4 @@
 .env
 venv
-generated_image.png
+*.png
 *.pyc

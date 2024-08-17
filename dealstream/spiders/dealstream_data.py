@@ -148,8 +148,8 @@ class DealstreamDataSpider(scrapy.Spider):
         extracted_titles = response.css(".b span::attr(title)").getall()
 
         # Initialize variables with default value 'No'
-        seller_financing = "Yes" if 'Seller Financing' in extracted_titles else "No"
-        absentee_owner = "Yes" if 'Management Will Stay' in extracted_titles else "No"
+        seller_financing = "yes" if 'Seller Financing' in extracted_titles else ""
+        owner_type = "absentee" if 'Management Will Stay' in extracted_titles else ""
         
         # Extracting Price
         price_str = response.css('p:contains("Price")::text').get()
@@ -258,7 +258,7 @@ class DealstreamDataSpider(scrapy.Spider):
             "cash_flow": cash_flow,
             "EBITDA": ebita,
             'seller_financing': seller_financing,
-            'absentee_owner': absentee_owner,
+            'absentee_owner': owner_type,
             'listing-photos': json.dumps(dynamic_dict),
             "businessListedBy": listed_by,
             "scraped_business_description": fullScrapedDescription,

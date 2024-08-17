@@ -460,7 +460,7 @@ def generate_readable_description(business_description):
 def generate_readable_title_withAI(business_description):
 
     prompt = (
-        f"Convert the following verbose business description into a concise, human-readable and factual headline for what the business/product is with its location, in 6 words or less. "
+        f"In 6 words or less, convert the following verbose business description into a concise, human-readable and factual headline for what the business/product is with its location. "
         f"Exclude any punctuation except when showing city and state. Always show state abbreviated if city is also shown, else show full state name. If no City or State was found, exclude the location details. "
         f"Do not use brackets and placeholder or dummy data for location. "
         f"Exclude the word opportunity and subjective words like thriving from results, just say what it is: {business_description}"
