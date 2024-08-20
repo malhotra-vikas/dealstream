@@ -211,6 +211,15 @@ class DealstreamDataSpider(scrapy.Spider):
             and business_description != ""
         ):
             title = generate_readable_title_withAI(business_description)
+            
+            # Check if the title length is 255 characters or less
+            if len(title) <= 240:
+                print("The title is within the 255 character limit.")            
+            else:
+                print("The title exceeds the 255 character limit.")
+                # Truncate title to the first 50 characters
+                title = title[:100]
+
         else:
             title = "NA"
 
