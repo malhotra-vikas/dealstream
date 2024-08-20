@@ -45,42 +45,43 @@ class DealstreamDataSpider(scrapy.Spider):
 
     # changes the headers and cookies before new run...
     cookies = {
-        "cfid": "5ceb9b4c-f18c-4007-a5cc-e8f53bf2d750",
-        "cftoken": "0",
-        "_gcl_au": "1.1.1293103892.1721724039",
-        "__stripe_mid": "c5cc8d7a-5602-4aec-bfb8-80a78949a3aeb106cb",
-        "uuid": "E6CCB29E-3663-4D8E-B138D2D4C81CF4DC",
-        "hasMembership": "E6CCB29E-3663-4D8E-B138D2D4C81CF4DC",
-        "_gid": "GA1.2.329061477.1723608652",
-        "_gat_gtag_UA_89671999_1": "1",
-        "_ga_N7W2D9NKM5": "GS1.1.1723608651.18.1.1723608670.41.0.0",
-        "_ga": "GA1.2.565860145.1721724040",
-        "AWSALB": "G7hHuvAkPOMmX6sw4p6/VIIaVx3Gk9Hv1AL3cTBx2VYFit2yC5hpB7bO6w0RIBaZOws4RBH6R341wGkROtGxOxH9/HtKIuuP+JHsN2Egr8cQ/y9fLnAp2n6WhphB",
-        "AWSALBCORS": "G7hHuvAkPOMmX6sw4p6/VIIaVx3Gk9Hv1AL3cTBx2VYFit2yC5hpB7bO6w0RIBaZOws4RBH6R341wGkROtGxOxH9/HtKIuuP+JHsN2Egr8cQ/y9fLnAp2n6WhphB",
-        "datadome": "kIDDeUKQLuWm~v_onua28NI5t2UIFzzyV9_axq_Mg6oubAMlJI6ulePgx0z2Ji3wJl43FnS4KF8Q3mWZFBLJjRPCYpA7x7aGLSzezpa4CspiJaXYxk9sINPKMlPNysTe",
+        'cfid': 'aa5e8793-bdd1-49bd-b907-9a73c55108ba',
+        'cftoken': '0',
+        'uuid': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
+        '_gcl_au': '1.1.1583257977.1721296754',
+        'hasMembership': '8921A253-57AB-45AD-BADA2483DF1327E9',
+        'rememberID': '6698e2b70ec42752812bf856',
+        '__stripe_mid': '8d75e2bb-f970-4c6f-b85c-9fe97389006e002631',
+        '_gid': 'GA1.2.1063500830.1724105439',
+        '_gat_gtag_UA_89671999_1': '1',
+        '_ga_N7W2D9NKM5': 'GS1.1.1724183392.17.0.1724183392.60.0.0',
+        '_ga': 'GA1.1.1859894013.1721296755',
+        '__stripe_sid': '31d0527c-8f46-490d-8369-25008a99fd36571cec',
+        'datadome': 'kkU7hc4Y89pzrT~BbGZGOXnQxmCRUOQsnqqTKs8GfwV2DMMH8tMboW5lqsPpd_kur849h6croxez7f3AGD1nFt1GbOAicBT1meBtD14WvACdWLlS66xR2F09tY644wGX',
+        'AWSALB': 'gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY',
+        'AWSALBCORS': 'gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY',
     }
 
     headers = {
-        "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
-        "accept-language": "en-US,en;q=0.9",
-        "cache-control": "max-age=0",
-        # 'cookie': 'cfid=5ceb9b4c-f18c-4007-a5cc-e8f53bf2d750; cftoken=0; _gcl_au=1.1.1293103892.1721724039; __stripe_mid=c5cc8d7a-5602-4aec-bfb8-80a78949a3aeb106cb; uuid=E6CCB29E-3663-4D8E-B138D2D4C81CF4DC; hasMembership=E6CCB29E-3663-4D8E-B138D2D4C81CF4DC; _gid=GA1.2.329061477.1723608652; _gat_gtag_UA_89671999_1=1; _ga_N7W2D9NKM5=GS1.1.1723608651.18.1.1723608670.41.0.0; _ga=GA1.2.565860145.1721724040; AWSALB=G7hHuvAkPOMmX6sw4p6/VIIaVx3Gk9Hv1AL3cTBx2VYFit2yC5hpB7bO6w0RIBaZOws4RBH6R341wGkROtGxOxH9/HtKIuuP+JHsN2Egr8cQ/y9fLnAp2n6WhphB; AWSALBCORS=G7hHuvAkPOMmX6sw4p6/VIIaVx3Gk9Hv1AL3cTBx2VYFit2yC5hpB7bO6w0RIBaZOws4RBH6R341wGkROtGxOxH9/HtKIuuP+JHsN2Egr8cQ/y9fLnAp2n6WhphB; datadome=kIDDeUKQLuWm~v_onua28NI5t2UIFzzyV9_axq_Mg6oubAMlJI6ulePgx0z2Ji3wJl43FnS4KF8Q3mWZFBLJjRPCYpA7x7aGLSzezpa4CspiJaXYxk9sINPKMlPNysTe',
-        "priority": "u=0, i",
-        "sec-ch-device-memory": "8",
-        "sec-ch-ua": '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
-        "sec-ch-ua-arch": '"x86"',
-        "sec-ch-ua-full-version-list": '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.100", "Chromium";v="127.0.6533.100"',
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-model": '""',
-        "sec-ch-ua-platform": '"Windows"',
-        "sec-fetch-dest": "document",
-        "sec-fetch-mode": "navigate",
-        "sec-fetch-site": "none",
-        "sec-fetch-user": "?1",
-        "upgrade-insecure-requests": "1",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36",
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'accept-language': 'en-US,en;q=0.9',
+        'cache-control': 'max-age=0',
+        # 'cookie': 'cfid=aa5e8793-bdd1-49bd-b907-9a73c55108ba; cftoken=0; uuid=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; _gcl_au=1.1.1583257977.1721296754; hasMembership=8921A253-57AB-45AD-BADA2483DF1327E9; rememberID=6698e2b70ec42752812bf856; __stripe_mid=8d75e2bb-f970-4c6f-b85c-9fe97389006e002631; _gid=GA1.2.1063500830.1724105439; _gat_gtag_UA_89671999_1=1; _ga_N7W2D9NKM5=GS1.1.1724183392.17.0.1724183392.60.0.0; _ga=GA1.1.1859894013.1721296755; __stripe_sid=31d0527c-8f46-490d-8369-25008a99fd36571cec; datadome=kkU7hc4Y89pzrT~BbGZGOXnQxmCRUOQsnqqTKs8GfwV2DMMH8tMboW5lqsPpd_kur849h6croxez7f3AGD1nFt1GbOAicBT1meBtD14WvACdWLlS66xR2F09tY644wGX; AWSALB=gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY; AWSALBCORS=gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY',
+        'priority': 'u=0, i',
+        'sec-ch-device-memory': '8',
+        'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+        'sec-ch-ua-arch': '""',
+        'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.72", "Chromium";v="127.0.6533.72"',
+        'sec-ch-ua-mobile': '?1',
+        'sec-ch-ua-model': '"Nexus 5"',
+        'sec-ch-ua-platform': '"Android"',
+        'sec-fetch-dest': 'document',
+        'sec-fetch-mode': 'navigate',
+        'sec-fetch-site': 'none',
+        'sec-fetch-user': '?1',
+        'upgrade-insecure-requests': '1',
+        'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
     }
-
     def start_requests(self):
         # Get the environment variable value
         env_value = os.getenv("RUN_ENV", "local")  # Default to 'local' if not set
@@ -211,7 +212,7 @@ class DealstreamDataSpider(scrapy.Spider):
             and business_description != ""
         ):
             title = generate_readable_title_withAI(business_description)
-            
+
             # Check if the title length is 255 characters or less
             if len(title) <= 240:
                 print("The title is within the 255 character limit.")            
