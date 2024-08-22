@@ -77,24 +77,23 @@ class DealstreamDataSpider(scrapy.Spider):
         'cftoken': '0',
         'uuid': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
         '_gcl_au': '1.1.1583257977.1721296754',
-        'hasMembership': '8921A253-57AB-45AD-BADA2483DF1327E9',
-        'rememberID': '6698e2b70ec42752812bf856',
         '__stripe_mid': '8d75e2bb-f970-4c6f-b85c-9fe97389006e002631',
         '_gid': 'GA1.2.1063500830.1724105439',
-        '_gat_gtag_UA_89671999_1': '1',
-        '_ga_N7W2D9NKM5': 'GS1.1.1724183392.17.0.1724183392.60.0.0',
+        'hasMembership': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
+        'rememberID': '66c6c4dd1e6e236a9614a51b',
+        '__stripe_sid': 'd3039336-1310-4fb9-8921-dbf647a780869c8a9a',
+        '_ga_N7W2D9NKM5': 'GS1.1.1724302516.19.1.1724302570.6.0.0',
         '_ga': 'GA1.1.1859894013.1721296755',
-        '__stripe_sid': '31d0527c-8f46-490d-8369-25008a99fd36571cec',
-        'datadome': 'kkU7hc4Y89pzrT~BbGZGOXnQxmCRUOQsnqqTKs8GfwV2DMMH8tMboW5lqsPpd_kur849h6croxez7f3AGD1nFt1GbOAicBT1meBtD14WvACdWLlS66xR2F09tY644wGX',
-        'AWSALB': 'gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY',
-        'AWSALBCORS': 'gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY',
+        'datadome': 'z_W0omasdulpjMBIVZasi_GH951khLj2uFRneIAesYpyQqryT5Yfl1~cRx3wvN5VkJhV~Mixi1J0UdPNSEOGikzqJ9pnNBQlDAkXHWi7q_tozLTBzQhdGPL_LQoSlMBF',
+        'AWSALB': 'zxpm4G5PnO/8jaZ1rRI2/0IVBTH78P+dQHLxGyIbIDFLNMm6oOw02HdEFyqaZCghQjReQ3uxXFaU93Vo6B3+LZVGpBOKsCUHlXLaTJfz3YPyV1j0M7FIGhfTNbry',
+        'AWSALBCORS': 'zxpm4G5PnO/8jaZ1rRI2/0IVBTH78P+dQHLxGyIbIDFLNMm6oOw02HdEFyqaZCghQjReQ3uxXFaU93Vo6B3+LZVGpBOKsCUHlXLaTJfz3YPyV1j0M7FIGhfTNbry',
     }
 
     headers = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'accept-language': 'en-US,en;q=0.9',
         'cache-control': 'max-age=0',
-        # 'cookie': 'cfid=aa5e8793-bdd1-49bd-b907-9a73c55108ba; cftoken=0; uuid=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; _gcl_au=1.1.1583257977.1721296754; hasMembership=8921A253-57AB-45AD-BADA2483DF1327E9; rememberID=6698e2b70ec42752812bf856; __stripe_mid=8d75e2bb-f970-4c6f-b85c-9fe97389006e002631; _gid=GA1.2.1063500830.1724105439; _gat_gtag_UA_89671999_1=1; _ga_N7W2D9NKM5=GS1.1.1724183392.17.0.1724183392.60.0.0; _ga=GA1.1.1859894013.1721296755; __stripe_sid=31d0527c-8f46-490d-8369-25008a99fd36571cec; datadome=kkU7hc4Y89pzrT~BbGZGOXnQxmCRUOQsnqqTKs8GfwV2DMMH8tMboW5lqsPpd_kur849h6croxez7f3AGD1nFt1GbOAicBT1meBtD14WvACdWLlS66xR2F09tY644wGX; AWSALB=gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY; AWSALBCORS=gNkJJ6JyjTbEdJLUstsFs0hMs4brxQpUxxaYm3v/3piYCbgKjjUsLf3A7vR09edrV0oWtVtwhE6qQbBEZuFgiMbIsg4cS5zoIUTh42CZaI5mARBGCSHcf/BFRdzY',
+        # 'cookie': 'cfid=aa5e8793-bdd1-49bd-b907-9a73c55108ba; cftoken=0; uuid=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; _gcl_au=1.1.1583257977.1721296754; __stripe_mid=8d75e2bb-f970-4c6f-b85c-9fe97389006e002631; _gid=GA1.2.1063500830.1724105439; hasMembership=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; rememberID=66c6c4dd1e6e236a9614a51b; __stripe_sid=d3039336-1310-4fb9-8921-dbf647a780869c8a9a; _ga_N7W2D9NKM5=GS1.1.1724302516.19.1.1724302570.6.0.0; _ga=GA1.1.1859894013.1721296755; datadome=z_W0omasdulpjMBIVZasi_GH951khLj2uFRneIAesYpyQqryT5Yfl1~cRx3wvN5VkJhV~Mixi1J0UdPNSEOGikzqJ9pnNBQlDAkXHWi7q_tozLTBzQhdGPL_LQoSlMBF; AWSALB=zxpm4G5PnO/8jaZ1rRI2/0IVBTH78P+dQHLxGyIbIDFLNMm6oOw02HdEFyqaZCghQjReQ3uxXFaU93Vo6B3+LZVGpBOKsCUHlXLaTJfz3YPyV1j0M7FIGhfTNbry; AWSALBCORS=zxpm4G5PnO/8jaZ1rRI2/0IVBTH78P+dQHLxGyIbIDFLNMm6oOw02HdEFyqaZCghQjReQ3uxXFaU93Vo6B3+LZVGpBOKsCUHlXLaTJfz3YPyV1j0M7FIGhfTNbry',
         'priority': 'u=0, i',
         'sec-ch-device-memory': '8',
         'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
@@ -110,6 +109,7 @@ class DealstreamDataSpider(scrapy.Spider):
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
     }
+
     def start_requests(self):
         # Get the environment variable value
         env_value = os.getenv("RUN_ENV", "local")  # Default to 'local' if not set
