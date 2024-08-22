@@ -5,6 +5,7 @@ import os
 import boto3
 import json
 from datetime import datetime
+import pandas as pd
 
 from scrapy import signals
 from scrapy.signalmanager import dispatcher
@@ -18,6 +19,33 @@ from listingDescriptionHandler import (
 
 dotenv.load_dotenv()
 
+# Determine the environment
+runEnv = os.getenv('RUN_ENV', 'local')  # Default to 'local' if not set
+
+# Set file path based on the environment
+if runEnv == 'production':
+    category_mapping_file_path = '/home/ubuntu/dealstream/dealstream/spiders/CategoryMapping.csv'
+else:
+    category_mapping_file_path = '/Users/vikas/builderspace/dealstream/dealstream/spiders/CategoryMapping.csv'
+
+# Load the CSV file into a dictionary for category mapping
+def load_category_mappings(category_mapping_file_path):
+    df = pd.read_csv(category_mapping_file_path)
+    return dict(zip(df['Original Category'], df['Mapped Category']))
+
+# Load the mappings at the start
+category_mapping = load_category_mappings(category_mapping_file_path)
+
+def get_mapped_category(computed_category):
+    # Check if the computed category exists in the dictionary
+    if computed_category in category_mapping:
+        # Print the mapped category if a match is found
+        print("Mapped Category:", category_mapping[computed_category])
+        return category_mapping[computed_category]
+    else:
+        # Print a message if no match is found
+        print("No mapped category found for:", computed_category)
+        return computed_category
 
 class DealstreamDataSpider(scrapy.Spider):
     name = "dealstream_data"
@@ -255,6 +283,7 @@ class DealstreamDataSpider(scrapy.Spider):
             print("dynamic_dict after Scrapped Image Dict", json.dumps(dynamic_dict))
         '''
 
+        category = get_mapped_category(category)
 
         yield {
             "ad_id": f"{article_id}_DealStream",
