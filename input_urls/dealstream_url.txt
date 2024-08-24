@@ -1,1 +1,1 @@
-https://dealstream.com/search/businessforsale?updatecriteria=true&q=&geoID=6252001&price.min=10000&price.max=&profit.min=100000
+https://dealstream.com/search/businessforsale?updatecriteria=true&q=&geoID=6252001&price.min=100000&price.max=&profit.min=100000
