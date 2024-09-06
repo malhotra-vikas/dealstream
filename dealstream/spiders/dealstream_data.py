@@ -73,31 +73,33 @@ class DealstreamDataSpider(scrapy.Spider):
 
     # changes the headers and cookies before new run...
     cookies = {
-    'cfid': 'aa5e8793-bdd1-49bd-b907-9a73c55108ba',
-    'cftoken': '0',
-    'uuid': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
-    '_gcl_au': '1.1.1583257977.1721296754',
-    '__stripe_mid': '8d75e2bb-f970-4c6f-b85c-9fe97389006e002631',
-    'hasMembership': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
-    'rememberID': '66c6c4dd1e6e236a9614a51b',
-    '_gid': 'GA1.2.805029274.1724458342',
-    '__stripe_sid': 'dc8bb5c7-06ec-4aa1-98b6-7a38dcc4d752235443',
-    'AWSALB': 'Dg0TvZajlL9+q235uu/gEP5lrsEi0TLXuQin2binQyV3RiIOTXynBzcjQDGJK/B1swWw1ENWfjB3Ux4EeImbV6L7YNtwGB1O3H7TGJmA6G4iSqiujFG6/TIVKqgy',
-    'AWSALBCORS': 'Dg0TvZajlL9+q235uu/gEP5lrsEi0TLXuQin2binQyV3RiIOTXynBzcjQDGJK/B1swWw1ENWfjB3Ux4EeImbV6L7YNtwGB1O3H7TGJmA6G4iSqiujFG6/TIVKqgy',
-    '_ga_N7W2D9NKM5': 'GS1.1.1724458342.20.1.1724458563.60.0.0',
-    '_ga': 'GA1.2.1859894013.1721296755',
-    'datadome': 'SY8l90VVKtnokFi9ZG5vj~WXKaIQ~pvP5weej5rwOMzJ0v4U7BP71X2biDk8dA9KGXc2X1qqxPYRI5cBaxrU~My9Gu4Q7CEuyDrBfV1i6thMnyrYvHBLCtjLJL3QQ7q8',
+        'cfid': 'aa5e8793-bdd1-49bd-b907-9a73c55108ba',
+        'cftoken': '0',
+        'uuid': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
+        '_gcl_au': '1.1.1583257977.1721296754',
+        '__stripe_mid': '8d75e2bb-f970-4c6f-b85c-9fe97389006e002631',
+        'hasMembership': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
+        'rememberID': '66c6c4dd1e6e236a9614a51b',
+        '_gid': 'GA1.2.1691080122.1725655755',
+        '__stripe_sid': '2028500b-05c6-4476-be55-34bc1f040654c95d9d',
+        '_gat_gtag_UA_89671999_1': '1',
+        '_ga_N7W2D9NKM5': 'GS1.1.1725655755.22.1.1725656388.48.0.0',
+        '_ga': 'GA1.2.1859894013.1721296755',
+        'datadome': 'JQPfjYG0Khf9FTc1qd0ighvaQf9vaX2_VqT_edUXZezlAFkM19vcud~NKTAtAXStHqcaGojsrKkcyb1Y3QIvtW9yRpGsrxYD2FAu1eMyUlJWhK4FEuCnf0jBWYdAiM9R',
+        'AWSALB': 'teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj',
+        'AWSALBCORS': 'teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj',
     }
 
     headers = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'accept-language': 'en-US,en;q=0.9',
-        # 'cookie': 'cfid=aa5e8793-bdd1-49bd-b907-9a73c55108ba; cftoken=0; uuid=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; _gcl_au=1.1.1583257977.1721296754; __stripe_mid=8d75e2bb-f970-4c6f-b85c-9fe97389006e002631; hasMembership=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; rememberID=66c6c4dd1e6e236a9614a51b; _gid=GA1.2.805029274.1724458342; __stripe_sid=dc8bb5c7-06ec-4aa1-98b6-7a38dcc4d752235443; AWSALB=Dg0TvZajlL9+q235uu/gEP5lrsEi0TLXuQin2binQyV3RiIOTXynBzcjQDGJK/B1swWw1ENWfjB3Ux4EeImbV6L7YNtwGB1O3H7TGJmA6G4iSqiujFG6/TIVKqgy; AWSALBCORS=Dg0TvZajlL9+q235uu/gEP5lrsEi0TLXuQin2binQyV3RiIOTXynBzcjQDGJK/B1swWw1ENWfjB3Ux4EeImbV6L7YNtwGB1O3H7TGJmA6G4iSqiujFG6/TIVKqgy; _ga_N7W2D9NKM5=GS1.1.1724458342.20.1.1724458563.60.0.0; _ga=GA1.2.1859894013.1721296755; datadome=SY8l90VVKtnokFi9ZG5vj~WXKaIQ~pvP5weej5rwOMzJ0v4U7BP71X2biDk8dA9KGXc2X1qqxPYRI5cBaxrU~My9Gu4Q7CEuyDrBfV1i6thMnyrYvHBLCtjLJL3QQ7q8',
+        'cache-control': 'max-age=0',
+        # 'cookie': 'cfid=aa5e8793-bdd1-49bd-b907-9a73c55108ba; cftoken=0; uuid=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; _gcl_au=1.1.1583257977.1721296754; __stripe_mid=8d75e2bb-f970-4c6f-b85c-9fe97389006e002631; hasMembership=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; rememberID=66c6c4dd1e6e236a9614a51b; _gid=GA1.2.1691080122.1725655755; __stripe_sid=2028500b-05c6-4476-be55-34bc1f040654c95d9d; _gat_gtag_UA_89671999_1=1; _ga_N7W2D9NKM5=GS1.1.1725655755.22.1.1725656388.48.0.0; _ga=GA1.2.1859894013.1721296755; datadome=JQPfjYG0Khf9FTc1qd0ighvaQf9vaX2_VqT_edUXZezlAFkM19vcud~NKTAtAXStHqcaGojsrKkcyb1Y3QIvtW9yRpGsrxYD2FAu1eMyUlJWhK4FEuCnf0jBWYdAiM9R; AWSALB=teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj; AWSALBCORS=teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj',
         'priority': 'u=0, i',
         'sec-ch-device-memory': '8',
-        'sec-ch-ua': '"Not)A;Brand";v="99", "Google Chrome";v="127", "Chromium";v="127"',
+        'sec-ch-ua': '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
         'sec-ch-ua-arch': '""',
-        'sec-ch-ua-full-version-list': '"Not)A;Brand";v="99.0.0.0", "Google Chrome";v="127.0.6533.72", "Chromium";v="127.0.6533.72"',
+        'sec-ch-ua-full-version-list': '"Chromium";v="128.0.6613.84", "Not;A=Brand";v="24.0.0.0", "Google Chrome";v="128.0.6613.84"',
         'sec-ch-ua-mobile': '?1',
         'sec-ch-ua-model': '"Nexus 5"',
         'sec-ch-ua-platform': '"Android"',
@@ -106,9 +108,8 @@ class DealstreamDataSpider(scrapy.Spider):
         'sec-fetch-site': 'none',
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
-        'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Mobile Safari/537.36',
-    }
-
+        'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
+}
     def start_requests(self):
         # Get the environment variable value
         env_value = os.getenv("RUN_ENV", "local")  # Default to 'local' if not set
