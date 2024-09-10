@@ -80,21 +80,21 @@ class DealstreamDataSpider(scrapy.Spider):
         '__stripe_mid': '8d75e2bb-f970-4c6f-b85c-9fe97389006e002631',
         'hasMembership': '0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0',
         'rememberID': '66c6c4dd1e6e236a9614a51b',
-        '_gid': 'GA1.2.1691080122.1725655755',
-        '__stripe_sid': '2028500b-05c6-4476-be55-34bc1f040654c95d9d',
+        '_gid': 'GA1.2.1071245137.1725975545',
         '_gat_gtag_UA_89671999_1': '1',
-        '_ga_N7W2D9NKM5': 'GS1.1.1725655755.22.1.1725656388.48.0.0',
-        '_ga': 'GA1.2.1859894013.1721296755',
-        'datadome': 'JQPfjYG0Khf9FTc1qd0ighvaQf9vaX2_VqT_edUXZezlAFkM19vcud~NKTAtAXStHqcaGojsrKkcyb1Y3QIvtW9yRpGsrxYD2FAu1eMyUlJWhK4FEuCnf0jBWYdAiM9R',
-        'AWSALB': 'teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj',
-        'AWSALBCORS': 'teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj',
+        '_ga_N7W2D9NKM5': 'GS1.1.1725975544.23.0.1725975544.60.0.0',
+        '_ga': 'GA1.1.1859894013.1721296755',
+        'datadome': 'r4sqQNiG1_bfqUp0P_sv5~vJOysxVm6zZgK3uDzOxjChLEmdzbKJopnvE6Loi6F8eis~lMw7gNTIdfCzz98ZAkAh12uQtiU6_Vqe3lWl~_6YghjTSvvxRDso4AX29lgE',
+        '__stripe_sid': '19387c99-e3a4-476b-9e9c-104df965f729dd7d5a',
+        'AWSALB': 'twB7huTn/5jp4bFNmbaseJeN615sfJsfLz9GQsOc93dmjqktn9ENgT9u/aHvNP0I7YtuAb/MNKa0p4eN9oAC+uR8l5+C1AgeNmnqN6F7J/YMEIilu35/2jpghGDu',
+        'AWSALBCORS': 'twB7huTn/5jp4bFNmbaseJeN615sfJsfLz9GQsOc93dmjqktn9ENgT9u/aHvNP0I7YtuAb/MNKa0p4eN9oAC+uR8l5+C1AgeNmnqN6F7J/YMEIilu35/2jpghGDu',
     }
 
     headers = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
         'accept-language': 'en-US,en;q=0.9',
         'cache-control': 'max-age=0',
-        # 'cookie': 'cfid=aa5e8793-bdd1-49bd-b907-9a73c55108ba; cftoken=0; uuid=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; _gcl_au=1.1.1583257977.1721296754; __stripe_mid=8d75e2bb-f970-4c6f-b85c-9fe97389006e002631; hasMembership=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; rememberID=66c6c4dd1e6e236a9614a51b; _gid=GA1.2.1691080122.1725655755; __stripe_sid=2028500b-05c6-4476-be55-34bc1f040654c95d9d; _gat_gtag_UA_89671999_1=1; _ga_N7W2D9NKM5=GS1.1.1725655755.22.1.1725656388.48.0.0; _ga=GA1.2.1859894013.1721296755; datadome=JQPfjYG0Khf9FTc1qd0ighvaQf9vaX2_VqT_edUXZezlAFkM19vcud~NKTAtAXStHqcaGojsrKkcyb1Y3QIvtW9yRpGsrxYD2FAu1eMyUlJWhK4FEuCnf0jBWYdAiM9R; AWSALB=teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj; AWSALBCORS=teOhaa3ZzPu/7/aIhOu7HhkBIcIBpl0LBok8R7VlbausxO7bPTKmlvn4pt5BVL0au5MeIQcrWHDEx0DJDzka1RrlrFqyN+/S+GezKbyWxY5Mg3f62ktbk/DjORwj',
+        # 'cookie': 'cfid=aa5e8793-bdd1-49bd-b907-9a73c55108ba; cftoken=0; uuid=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; _gcl_au=1.1.1583257977.1721296754; __stripe_mid=8d75e2bb-f970-4c6f-b85c-9fe97389006e002631; hasMembership=0C6D9ABE-0F1A-4FC3-9E80C8B73C8236F0; rememberID=66c6c4dd1e6e236a9614a51b; _gid=GA1.2.1071245137.1725975545; _gat_gtag_UA_89671999_1=1; _ga_N7W2D9NKM5=GS1.1.1725975544.23.0.1725975544.60.0.0; _ga=GA1.1.1859894013.1721296755; datadome=r4sqQNiG1_bfqUp0P_sv5~vJOysxVm6zZgK3uDzOxjChLEmdzbKJopnvE6Loi6F8eis~lMw7gNTIdfCzz98ZAkAh12uQtiU6_Vqe3lWl~_6YghjTSvvxRDso4AX29lgE; __stripe_sid=19387c99-e3a4-476b-9e9c-104df965f729dd7d5a; AWSALB=twB7huTn/5jp4bFNmbaseJeN615sfJsfLz9GQsOc93dmjqktn9ENgT9u/aHvNP0I7YtuAb/MNKa0p4eN9oAC+uR8l5+C1AgeNmnqN6F7J/YMEIilu35/2jpghGDu; AWSALBCORS=twB7huTn/5jp4bFNmbaseJeN615sfJsfLz9GQsOc93dmjqktn9ENgT9u/aHvNP0I7YtuAb/MNKa0p4eN9oAC+uR8l5+C1AgeNmnqN6F7J/YMEIilu35/2jpghGDu',
         'priority': 'u=0, i',
         'sec-ch-device-memory': '8',
         'sec-ch-ua': '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
@@ -109,7 +109,8 @@ class DealstreamDataSpider(scrapy.Spider):
         'sec-fetch-user': '?1',
         'upgrade-insecure-requests': '1',
         'user-agent': 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36',
-}
+    }
+
     def start_requests(self):
         # Get the environment variable value
         env_value = os.getenv("RUN_ENV", "local")  # Default to 'local' if not set
